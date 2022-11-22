@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {JokeApiService} from "../../services/http/joke-api.service";
+import {Joke} from "../../shared/models/joke";
 
 @Component({
   selector: 'app-home',
@@ -8,12 +9,17 @@ import {JokeApiService} from "../../services/http/joke-api.service";
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private jokeApiService: JokeApiService) { }
+  jokeFromApi!: Joke;
 
-  ngOnInit(): void {
-    this.jokeApiService.getJoke().subscribe((joke) =>{
-      console.log(joke);
-    });
+  constructor(private jokeApiService: JokeApiService) {
+    this.jokeFromApi = new Joke("", "", "");
   }
 
+  ngOnInit(): void {
+    this.getNewJoke();
+  }
+
+  getNewJoke() {
+    this.jokeApiService.getJoke().subscribe((joke) => this.jokeFromApi = joke);
+  }
 }
