@@ -1,1 +1,62 @@
-<p>jokes-list works!</p>
+<div class="mw-100 container" id="generalContainer">
+  <div class="row">
+    <div class="col">
+      <h4>Jokes to be reviewed</h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <table class="table">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Text</th>
+          <th scope="col">Category</th>
+          <th scope="col">Type</th>
+          <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let joke of jokesToShow; index as i">
+          <th scope="row">{{i + 1}}</th>
+          <td>{{joke.text}}</td>
+          <td>{{joke.category}}</td>
+          <td>{{joke.type}}</td>
+          <td>
+            <button type="button" class="btn btn-outline-success btn-sm" (click)="acceptJoke(i)">Accept</button>
+            <button type="button" class="btn btn-outline-danger btn-sm" (click)="deleteJoke(i)">Delete</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <br><br><br><br>
+  <div class="row">
+    <div class="col">
+      <h4>Jokes accepted</h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <table class="table">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Text</th>
+          <th scope="col">Category</th>
+          <th scope="col">Type</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let joke of acceptedJokes; index as i">
+          <th scope="row">{{i + 1}}</th>
+          <td>{{joke.text}}</td>
+          <td>{{joke.category}}</td>
+          <td>{{joke.type}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
